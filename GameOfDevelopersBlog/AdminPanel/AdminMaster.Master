@@ -1,0 +1,108 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMaster.master.cs" Inherits="GameOfDevelopersBlog.AdminPanel.AdminMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>GOD Panel</title>
+    <link href="Assets/css/MainLayout.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="header Crevasse-3">
+            <h1 class="pagetitle">GOD Panel</h1>
+            <div class="userPanel">
+                <asp:Label ID="lbl_kullanici" runat="server"></asp:Label>
+                <asp:LinkButton ID="lbtn_cikis" runat="server" OnClick="lbtn_cikis_Click">Çıkış</asp:LinkButton>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div>
+            <div class="sidebar Crevasse-1">
+                <a href="Default.aspx">
+                    <div class="menuItem" style="font-weight: 900">
+                        Anasayfa
+                    </div>
+                </a>
+                <%--<a href="#">
+                    <div class="menuItem" style="font-weight:900">
+                        Kategori İşlemleri
+                    </div>
+                </a>--%>
+                <a class="dropdown-btn">
+                    <div class="menuItem">
+                        Kategori İşlemleri
+                    </div>
+                </a>
+
+                <div class="dropdown-container">
+                    <a href="KategoriListele.aspx">
+                        <div class="menuItem" style="padding-left: 25px;">
+                            Kategori Listele
+                        </div>
+                    </a>
+                    <a href="KategoriEkle.aspx">
+                        <div class="menuItem" style="padding-left: 25px;">
+                            Kategori Ekle
+                        </div>
+                    </a>
+
+                </div>
+
+                <a class="dropdown-btn">
+                    <div class="menuItem">
+                        Makale İşlemleri
+                    </div>
+                </a>
+                <div class="dropdown-container">
+                    <a href="MakaleListele.aspx">
+                        <div class="menuItem" style="padding-left: 25px;">
+                            Makale Listele
+                        </div>
+                    </a>
+                    <a href="MakaleEkle.aspx">
+                        <div class="menuItem" style="padding-left: 25px;">
+                            Makale Ekle
+                        </div>
+                    </a>
+                </div>
+
+                <a href="YorumListele.aspx">
+                    <div class="menuItem">
+                        Yorum İşlemleri
+                    </div>
+                </a>
+                <a href="UyeListele.aspx">
+                    <div class="menuItem">
+                        Üye İşlemleri
+                    </div>
+                </a>
+            </div>
+            <div class="contentContainer">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+
+    </form>
+    <script src="Assets/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('ContentPlaceHolder1_tb_icerik');
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                var dropdowncontent = this.nextElementSibling;
+                if (dropdowncontent.style.display === "block") {
+                    dropdowncontent.style.display = "none";
+                }
+                else {
+                    dropdowncontent.style.display = "block"
+                }
+            });
+        }
+    </script>
+</body>
+</html>
